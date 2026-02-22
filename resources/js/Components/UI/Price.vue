@@ -9,5 +9,5 @@ const props =defineProps({
   price:[Number,String],
 })
 
-const FormattedPrice = computed(()=>Number(props.price).toLocaleString('en-US', { style: 'currency', currency: 'USA' }))
+const FormattedPrice = computed(()=>Number(props.price).toLocaleString('en-US', { style: 'currency', currency: 'USD' }))
 </script>
