@@ -106,4 +106,11 @@ class RealtorListingController extends Controller
 
         return redirect()->back()->with('success', 'Listing was deleted!');
     }
+
+    public function restore(Listing $listing)
+    {
+        $listing->restore();
+
+        return redirect()->back()->with('success', 'Listing was restored!');
+    }
 }
