@@ -24,6 +24,7 @@
     "dependencies": {
         "@inertiajs/vue3": "^2.3.8",
         "@tailwindcss/postcss": "^4.1.18",
+        "lodash": "^4.18.1",
         "postcss": "^8.5.6"
     }
 }

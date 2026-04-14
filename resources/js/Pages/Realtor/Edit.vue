@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="create">
+  <form @submit.prevent="update">
     <div class=" grid grid-cols-6 gap-4">
       <div class=" col-span-2">
         <label class="label">Beds</label>
@@ -66,7 +66,7 @@
       </div>
 
       <div class=" col-span-6">
-        <button type="submit" class="btn-primary">Create</button>
+        <button type="submit" class="btn-primary">Update</button>
       </div>
     </div>
   </form>
@@ -74,16 +74,18 @@
 
 <script setup>
 import { useForm } from '@inertiajs/vue3'
-
-const form = useForm({
-  beds: 0,
-  baths: 0,
-  area: 0,
-  city: '',
-  code: '',
-  street: '',
-  street_nr: '',
-  price: 0,
+const props = defineProps({
+  listing: Object,
 })
-const create = () => form.post(route('listings.store'))
+const form = useForm({
+  beds: props.listing.beds,
+  baths: props.listing.baths,
+  area: props.listing.area,
+  city: props.listing.city,
+  code: props.listing.code,
+  street: props.listing.street,
+  street_nr: props.listing.street_nr,
+  price: props.listing.price,
+})
+const update = () => form.put(route('realtor.listing.update',{listing:props.listing.id}))
 </script>
