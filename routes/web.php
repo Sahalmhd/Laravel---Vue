@@ -25,5 +25,5 @@ Route::prefix('realtor')->name('realtor.')->middleware('auth')->group(function (
         ->name('listing.restore');
     Route::resource('listing', RealtorListingController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])->withTrashed();
     Route::resource('listing.image', RealtorListingImageController::class)
-        ->only(['create', 'store']);
+        ->only(['create', 'store', 'destroy']);
 });
