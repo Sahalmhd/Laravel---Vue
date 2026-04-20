@@ -52,11 +52,17 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        Gate::authorize('view', $listing);
+        // if (Auth::user()->cannot('view', $listing)) {
+        //     abort(403);
+        // }
+        // $this->authorize('view', $listing);
+        $listing->load(['images']);
 
         return inertia(
             'Listing/Show',
-            ['listing' => Listing::find($listing->id)]
+            [
+                'listing' => $listing,
+            ]
         );
     }
 }

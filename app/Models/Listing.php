@@ -6,6 +6,7 @@ use App\Policies\ListingPolicy;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 #[UsePolicy(ListingPolicy::class)]
@@ -33,6 +34,11 @@ class Listing extends Model
     public function owner()
     {
         return $this->belongsTo(User::class, 'by_user_id');
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(ListingImage::class);
     }
 
     public function scopeMostRecent($query)
