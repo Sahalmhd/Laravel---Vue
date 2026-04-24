@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\ListingOfferController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Support\Facades\Route;
@@ -11,6 +12,8 @@ Route::get('/', function () {
 });
 
 Route::resource('listings', ListingController::class)->only(['index', 'show']);
+
+route::resource('listing.offer', ListingOfferController::class)->only(['store'])->middleware('auth');
 
 Route::resource('user-account', UserAccountController::class)->only(['create', 'store']);
 
