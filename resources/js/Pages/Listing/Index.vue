@@ -10,8 +10,8 @@
 
 <script setup>
 import Pagination from '@/Components/UI/Pagination.vue'
-import Listing from './Index/Listing/Components/Listing.vue'
 import Filters from '@/Components/Filters.vue'
+import Listing from '@/Pages/Listing/Index/Components/Listing.vue'
 defineProps({
   listings: Object,
   filters:Object,
