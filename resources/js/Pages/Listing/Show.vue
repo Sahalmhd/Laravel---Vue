@@ -41,15 +41,16 @@
             <div><Price :price="listing.price" class="font-medium" /></div>
           </div>
           <div class="flex justify-between">
-            <div>Total paid</div>
+            <div>interest paid</div>
             <div><Price :price="totalInterest" class="font-medium" /></div>
           </div>
         </div>
       </Box>
-      <MakeOffer 
+      <MakeOffer
         v-if="user"
-        :listing-id="listing.id" 
+        :listing-id="listing.id"
         :price="listing.price"
+        @offer-updated="offer = $event"
       />
     </div>
   </div>
@@ -69,9 +70,12 @@ const duration = ref(25)
 const props = defineProps({
   listing: Object,
 })
+const offer = ref(props.listing.price)
+console.log(offer);
+
 
 const {monthlyPayment,totalPaid,totalInterest} =useMonthlyPayment(
-  props.listing.price,interestRate,duration)
+  offer,interestRate,duration)
 
 
 const page = usePage()
