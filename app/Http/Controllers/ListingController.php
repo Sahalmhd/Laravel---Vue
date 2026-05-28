@@ -14,6 +14,7 @@ class ListingController extends Controller
      */
     public function index(Request $request)
     {
+
         $filters = $request->only(['priceFrom', 'priceTo', 'beds', 'baths', 'areaFrom', 'areaTo']);
 
         $query = Listing::orderByDesc('created_at');
@@ -33,6 +34,7 @@ class ListingController extends Controller
                 'filters' => $filters,
                 'listings' => Listing::mostRecent()
                     ->filter($filters)
+                    ->withoutSold()
                     ->paginate(10)->withQueryString(),
             ]
         );
@@ -53,10 +55,9 @@ class ListingController extends Controller
      */
     public function show(Listing $listing)
     {
-        // if (Auth::user()->cannot('view', $listing)) {
-        //     abort(403);
-        // }
-        // $this->authorize('view', $listing);
+
+        Gate::authorize('view', $listing);
+
         $listing->load(['images']);
         $offer = ! Auth::user() ? null : $listing->offers()->byMe()->first();
 

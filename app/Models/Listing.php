@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Policies\ListingPolicy;
 use Illuminate\Database\Eloquent\Attributes\UsePolicy;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -49,6 +50,11 @@ class Listing extends Model
     public function scopeMostRecent($query)
     {
         return $query->orderByDesc('created_at');
+    }
+
+    public function scopeWithoutSold(Builder $query): Builder
+    {
+        return $query->whereNull('sold_at');
     }
 
     public function scopeFilter($query, $filters)
