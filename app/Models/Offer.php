@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Auth;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 class Offer extends Model
@@ -16,5 +18,10 @@ class Offer extends Model
     public function bidder()
     {
         return $this->belongsTo(User::class, 'bidder_id');
+    }
+
+    public function scopeByMe(Builder $query): Builder
+    {
+        return $query->where('bidder_id', Auth::user()?->id);
     }
 }

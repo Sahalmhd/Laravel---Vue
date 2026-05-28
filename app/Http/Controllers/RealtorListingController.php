@@ -23,8 +23,17 @@ class RealtorListingController extends Controller
                 'listings' => Auth::user()->listings()
                     ->filter($filters)
                     ->withCount('images')
+                    ->withCount('offers')
                     ->paginate(5)->withQueryString(),
             ]
+        );
+    }
+
+    public function show(Listing $listing)
+    {
+        return inertia(
+            'Realtor/Show',
+            ['listing' => $listing->load('offers')]
         );
     }
 
@@ -52,19 +61,6 @@ class RealtorListingController extends Controller
         ]));
 
         return redirect()->route('realtor.listing.index')->with('success', 'Listing created successfully');
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Listing $listing)
-    {
-        Gate::authorize('view', $listing);
-
-        return inertia(
-            'Listing/Show',
-            ['listing' => Listing::find($listing->id)]
-        );
     }
 
     /**
