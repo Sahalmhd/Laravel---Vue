@@ -44,6 +44,7 @@ RUN composer install --no-dev --optimize-autoloader
 RUN npm install
 RUN npm run build
 
+RUN php artisan migrate --force || true
 # Set permissions
 RUN chown -R www-data:www-data storage bootstrap/cache
 
