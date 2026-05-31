@@ -1,8 +1,41 @@
-services:
-  - type: web
-    name: laravel-vue
-    env: docker
-    plan: free
-    branch: main
-    autoDeploy: true
-    healthCheckPath: /
+# Exported from Render on 2026-05-31T19:09:27Z
+version: "1"
+projects:
+- name: laravel inertia
+  environments:
+  - name: Production
+    services:
+    - type: web
+      name: Laravel---Vue
+      runtime: docker
+      repo: https://github.com/Sahalmhd/Laravel---Vue
+      plan: free
+      envVars:
+      - key: ASSET_URL
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_HOST
+        sync: false
+      - key: DB_CONNECTION
+        sync: false
+      - key: APP_KEY
+        sync: false
+      - key: APP_URL
+        sync: false
+      - key: APP_DEBUG
+        sync: false
+      - key: APP_ENV
+        sync: false
+      - key: APP_NAME
+        sync: false
+      region: oregon
+      dockerContext: .
+      dockerfilePath: ./Dockerfile
+      autoDeployTrigger: "off"
