@@ -73,11 +73,11 @@
 import ListingAddress from '@/Components/ListingAddress.vue'
 import ListingSpace from '@/Components/ListingSpace.vue'
 import Box from '@/Components/UI/Box.vue'
-import Price from '@/Components/UI/Price.vue'
 import { Link } from '@inertiajs/vue3'
 import RealtorFilters from '@/Pages/Realtor/Index/Components/RealtorFilters.vue'
 import Pagination from '@/Components/UI/Pagination.vue'
 import EmptyState from '@/Components/UI/EmptyState.vue'
+import Price from '@/Components/UI/Price.vue'
 defineProps({listings:Object,
   filters:Object,
 })
